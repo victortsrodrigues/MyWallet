@@ -33,7 +33,7 @@ export async function signIn(req, res) {
       return res.status(httpStatus.NOT_FOUND).send("Invalid email or password!");
     }
     if (registeredUser && bcrypt.compareSync(user.password, registeredUser.password)) {
-      const token = jwt.sign({userId: registeredUser._id}, process.env.JWT_SECRET);
+      const token = jwt.sign({ userId: registeredUser._id }, process.env.JWT_SECRET);
       return res.status(httpStatus.OK).send(token);
     }
 
