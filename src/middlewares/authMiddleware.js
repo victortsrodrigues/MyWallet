@@ -14,8 +14,6 @@ export async function validateToken(req, res, next) {
     jwt.verify(token, process.env.JWT_SECRET, async (error, decoded) => {
       if (error) return res.sendStatus(httpStatus.UNAUTHORIZED)
       
-      console.log(decoded);
-      console.log(decoded.userId);
       const user = await db.collection("users").findOne({
         _id: new ObjectId(decoded.userId)
       });
